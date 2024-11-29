@@ -53,7 +53,7 @@ const PageComponent = () => {
   }, []);
 
   useEffect(() => {
-    if (uid !== "") {
+    if (uid !== "" || uid !== null) {
       console.log(uid);
       try {
         GetUserData({ uid })

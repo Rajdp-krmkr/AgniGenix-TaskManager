@@ -9,7 +9,7 @@ const isUserAuthenticated = ({ username, uid }) => {
         console.error("Invalid username: Username is required.");
         return reject(false);
       }
-
+      
       // console.log("Checking username:", username);
 
       // Create a document reference in the "users" collection with the given username

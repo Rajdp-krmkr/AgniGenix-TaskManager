@@ -91,8 +91,8 @@ const Notifications = ({ username, notification }) => {
   return (
     <>
       <div
-        className={`flex flex-row items-center justify-between gap-16 border-b-2 p-2 ${
-          isNotificationRead ? "bg-gray-100" : "bg-transparent"
+        className={`flex flex-row items-center justify-between gap-16 border-b-2 dark:border-gray-700 p-2 ${
+          isNotificationRead ? "bg-gray-100 dark:bg-gray-900" : "bg-transparent dark:bg-gray-700"
         } hover:bg-gray-100 rounded-lg transition-all cursor-pointer`}
         onClick={() => {
           setIsNotificationRead(true);

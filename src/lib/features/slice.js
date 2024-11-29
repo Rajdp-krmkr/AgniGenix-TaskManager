@@ -1,12 +1,23 @@
+import GetUserData from "@/Firebase Functions/GetuserData";
 import { createSlice } from "@reduxjs/toolkit";
+
+let email = "";
+let uid = "";
+
+const getUserdata = () => {
+  GetUserData({ uid })
+    .then((data) => {})
+    .catch((error) => {});
+};
 
 const initialState = {
   invitedUsers: [],
+  email: "",
 };
 
 export const invitedUsersSlice = createSlice({
   name: "invitedUsers",
-  initialState,  // Fixed typo here
+  initialState, // Fixed typo here
   reducers: {
     addInvitedUser: (state, action) => {
       const user = action.payload;
@@ -25,5 +36,6 @@ export const invitedUsersSlice = createSlice({
   },
 });
 
-export const { addInvitedUser, removeInvitedUser, resetInvitedUsersArray } = invitedUsersSlice.actions;
+export const { addInvitedUser, removeInvitedUser, resetInvitedUsersArray } =
+  invitedUsersSlice.actions;
 export default invitedUsersSlice.reducer;

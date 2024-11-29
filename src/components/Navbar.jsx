@@ -92,7 +92,7 @@ const NavbarComponent = () => {
   }, []);
 
   useEffect(() => {
-    if (uid !== null && username !== null) {
+    if ((uid !== null || uid !== "") && username !== null) {
       isUserAuthenticated({ username, uid })
         .then((res) => {
           // console.log("User is authenticated", res);
@@ -128,7 +128,13 @@ const NavbarComponent = () => {
           }
         })
         .catch((err) => {
-          if (err == false) {
+          if (
+            url !== "/log-in" &&
+            url !== "/sign-up" &&
+            url !== "/CreateProfile" &&
+            url !== ""
+          ) {
+            console.log("redirecting from navbar to sign-up");
             router.push("/sign-up");
           }
         });
@@ -355,8 +361,6 @@ const NavbarComponent = () => {
                               onClick={() => {
                                 if (section.title === "Add new task") {
                                   setAddTaskPopupNum(AddTaskPopupNum + 1);
-
-
                                 } else {
                                   router.push(section.url);
                                 }
@@ -470,12 +474,10 @@ const NavbarComponent = () => {
                     className={`${
                       item.name === "Log out"
                         ? "text-red-500 dark:text-red-500"
-                        : "text-black"
-                    } ${
-                      url === item.url
+                        : url === item.url
                         ? "text-thm-clr-1 dark:text-blue-500"
                         : "text-black dark:text-slate-200"
-                    } cursor-pointer m-2 flex flex-row gap-2 items-center hover:bg-gray-200 dark:hover:bg-gray-700 transition-all rounded-md p-2`}
+                    }  cursor-pointer m-2 flex flex-row gap-2 items-center hover:bg-gray-200 dark:hover:bg-gray-700 transition-all rounded-md p-2`}
                     onClick={() => {
                       if (item.name === "Log out") {
                         auth.signOut();
@@ -502,7 +504,7 @@ const NavbarComponent = () => {
           name={User !== null ? User.name : ""}
           photoUrl={photoURL}
         />
-        <AddTaskPopup addTaskPopupNum={AddTaskPopupNum} username={username}/>
+        <AddTaskPopup addTaskPopupNum={AddTaskPopupNum} username={username} />
       </>
     );
   }
